@@ -18,6 +18,7 @@ public class TeamController : Controller
     [HttpGet]
     public IActionResult Get()
     {
-        throw new NotImplementedException();
+        var response = _repository.Get();
+        return Ok(response);
     }
 }
