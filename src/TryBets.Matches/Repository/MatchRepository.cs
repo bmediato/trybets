@@ -12,7 +12,7 @@ public class MatchRepository : IMatchRepository
 
     public IEnumerable<MatchDTOResponse> Get(bool matchFinished)
     {
-        return _context.Matches.Where(m => m.MatchFinished == matchFinished)
+        var matches = _context.Matches.Where(m => m.MatchFinished == matchFinished)
                   .OrderBy(m => m.MatchId)
                   .Select(m => new MatchDTOResponse
                   {
@@ -27,5 +27,7 @@ public class MatchRepository : IMatchRepository
                       MatchFinished = m.MatchFinished,
                       MatchWinnerId = m.MatchWinnerId
                   }).ToList();
+
+        return matches;
     }
 }
